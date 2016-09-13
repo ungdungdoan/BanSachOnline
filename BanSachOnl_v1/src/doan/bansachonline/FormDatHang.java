@@ -1,8 +1,7 @@
-package demo.bansach;
+package doan.bansachonline;
 
-
-
-import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -10,26 +9,42 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class FormDmSach extends JFrame {
+import doan.bansachonline.DulieuDB;
+import doan.bansachonline.DbUtils;
+import doan.bansachonline.DanhMucSach;
+import doan.bansachonline.SachHeper;
+
+
+public class FormDatHang extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private JTextField txtMaS;
+	@SuppressWarnings("unused")
 	private JTextField txtTenS;
 	private DefaultTableModel dataModel;
 	private JTable table;
+	@SuppressWarnings("unused")
 	private JTextField txtGiaS;
+	@SuppressWarnings("unused")
 	private JButton btnMua;
+	@SuppressWarnings("unused")
 	private JButton btnThanhToan;
+	@SuppressWarnings("unused")
 	private JButton btnThoat;
-	public FormDmSach(){
+	private SachHeper ssachheper;
+	@SuppressWarnings("unused")
+	private DanhMucSach dms;
+	
+	public FormDatHang(){
 		setTitle("Đặt Sách");
 		setSize(1024, 768);
 		setLocationRelativeTo(null);
@@ -51,7 +66,7 @@ public class FormDmSach extends JFrame {
 	
 		
 		
-		String[] headers = {"Mã Sách", "Tên Sách", "Giá Sách","Còn Hàng","Hết Hàng"};
+		String[] headers = {"Mã Sách", "Tên Sách", "Giá Sách"};
 		dataModel = new DefaultTableModel(headers , 0);
 		JScrollPane scroll;
 		b1.add(scroll = new JScrollPane(table = new JTable(dataModel)));
@@ -63,8 +78,29 @@ public class FormDmSach extends JFrame {
 		b2.add(btnThoat = new JButton("Thoát"));
 
 		
+		
+		table.setRowHeight(25);
+		ssachheper = new SachHeper();
+		for(DanhMucSach dms : ssachheper.getAllDanhMucSach()){
+			Object[] rowData = {dms.getMaS(), dms.getTenS(), dms.getGiaS(),dms.getGiaS()};
+			dataModel.addRow(rowData);
+		}
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				napDanhSachTextfields();
+			}
+
+			private void napDanhSachTextfields() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 	}
 public static void main(String[] args) {
-	new FormDmSach().setVisible(true);
+	new FormDatHang().setVisible(true);
 }
 }
+
+
