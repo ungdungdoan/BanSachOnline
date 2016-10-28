@@ -2,10 +2,9 @@ package doan.bansachonline;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
 
 import doan.bansachonline.DulieuDB;
 import doan.bansachonline.DbUtils;
@@ -44,6 +44,7 @@ public class FormDatHang extends JFrame implements ActionListener{
 	@SuppressWarnings("unused")
 	private DanhMucSach dms;
 	private JButton btnQuayLai;
+
 
 	
 	public FormDatHang(){
@@ -90,23 +91,14 @@ public class FormDatHang extends JFrame implements ActionListener{
 		b2.add(btnMua = new JButton("Mua Sách"));
 		b2.add(btnThoat = new JButton("Thoát"));
 
-		
-		
+	
 		table.setRowHeight(25);
 		ssachheper = new SachHeper();
 		for(DanhMucSach dms : ssachheper.getAllDanhMucSach()){
 			Object[] rowData = {dms.getMaS(), dms.getTenS(), dms.getGiaS(),dms.getGiaS()};
 			dataModel.addRow(rowData);
 		}
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				napDanhSachTextfields();
-			}
-			private void napDanhSachTextfields() {
-				// TODO Auto-generated method stub
-			}
-		});
+		
 		btnQuayLai.addActionListener(this);
 		btnThoat.addActionListener(this);
 		btnMua.addActionListener(this);
@@ -117,24 +109,24 @@ public class FormDatHang extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
 		if(o.equals(btnMua)){
-			int row = table.getSelectedRow();
-			if(row >= 0){
-				String MaS = (String) table.getValueAt(row, 0);
-				dms = new DanhMucSach(MaS);
-				JOptionPane.showMessageDialog(FormDatHang.this, "Đặt hàng thành công !", "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
-				btnMua.setEnabled(false);
+				int row = table.getSelectedRow();
+					if(row >= 0){
+					
+						
+					
+					
+					JOptionPane.showMessageDialog(FormDatHang.this, "Đặt hàng thành công !", "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
 			}
-		}	else if(o.equals(btnThoat)){
+		}if(o.equals(btnThoat)){
 			int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát khỏi hệ thống !", "Thông Báo ",
 					JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				System.exit(0);
 			}
 		}
-		else if(o.equals(btnQuayLai)){
+		 if(o.equals(btnQuayLai)){
 			this.setVisible(false);
 		}
-		
 	}
 }
 

@@ -1,18 +1,34 @@
 package doan.bansachonline;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import doan.bansachonline.DbUtils;
+import doan.bansachonline.DulieuDB;
+
 public class DatHang {
 	private String CMaS;
 	private String CTenS; 
 	private String CGiaS;
+	
 	private DanhMucSach danhmucsach;
 	
-	public DatHang(String cMaS, String cTenS, String cGiaS,DanhMucSach danhMucSach, DanhMucSach danhmucsach) {
+	public DatHang(String cMaS, String cTenS, String cGiaS, DanhMucSach danhmucsach) {
 		this.CMaS = cMaS;
 		this.CTenS = cTenS;
 		this.CGiaS = cGiaS;
 		this.danhmucsach=danhmucsach;
 	}
 	
+
+	public DatHang(String cMaS) {
+		this(cMaS ,"Tên Sách", "Giá Sách", new DanhMucSach());
+	}
+	
+	public DatHang() {
+		this("Mã Sách");
+	}
 
 	public String getCMaS() {
 		return CMaS;
@@ -83,5 +99,24 @@ public class DatHang {
 	public String toString() {
 		return "DatHang [CMaS=" + CMaS + ", CTenS=" + CTenS + ", CGiaS=" + CGiaS + ", danhmucsach=" + danhmucsach + "]";
 	}	
+	public boolean create(){
+		Connection con = DulieuDB.getConnection();
+		PreparedStatement stmt = null;
+		int n=0;
+		try {
+		stmt = con.prepareStatement("insert into KhachHang values(?,?,?.?)");
+		stmt.setString(1, CMaS);
+		stmt.setString(2, CTenS);
+		stmt.setString(3, CGiaS);
+		stmt.setString(4, danhmucsach.getMaS());
+		n = stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DbUtils.close(stmt);
+		}
+		return n>0;
+}
 	
 }

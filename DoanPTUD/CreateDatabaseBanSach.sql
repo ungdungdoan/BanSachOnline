@@ -2,8 +2,19 @@ Create Database BanSachOnline
 Go
 Use BanSachOnline
 Go
+--Dang Nhap
+Create table DangNhap
+(
+	Id varchar(50) primary key,
+	Pass varchar(50)
+)
+insert into DangNhap values('ad','ad')
+insert into DangNhap values('ad1','ad1')
+insert into DangNhap values('ad2','ad2')
 
+select *from DangNhap
 --Danh muc sach
+
 Create Table DanhMucSach
 (
 	MaS varchar(20) not null primary key,
@@ -20,3 +31,4 @@ Create Table KhachHang
 	CGiaS varchar(50) not null,
 )
 select *from KhachHang
+
