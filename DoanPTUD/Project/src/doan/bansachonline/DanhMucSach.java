@@ -165,7 +165,7 @@ public class DanhMucSach implements java.io.Serializable{
 			stmt.setString(1, MaS);
 			rs = stmt.executeQuery();
 			while(rs.next()){
-				DatHang sv  = new DatHang(rs.getString("CMaS"), rs.getString("CTenS"),rs.getString("CGiaS"),this);
+				DatHang sv  = new DatHang(rs.getString("CMaS"), rs.getString("CTenS"),rs.getString("CGiaS"));
 				dsSach.add(sv);
 			}
 		} catch (SQLException e) {

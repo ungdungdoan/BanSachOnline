@@ -2,6 +2,7 @@ package doan.bansachonline;
 
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,7 @@ import doan.bansachonline.FormQuanLyDauSach;
 
 
 
+
 public class FormDangNhap extends JFrame implements ActionListener{
 
 
@@ -43,7 +45,7 @@ public class FormDangNhap extends JFrame implements ActionListener{
 
 	public FormDangNhap(){
 		setTitle("Login Quản Lý");
-		setSize(500,250);
+		setSize(460,320);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -69,7 +71,7 @@ public class FormDangNhap extends JFrame implements ActionListener{
 		lblId.setPreferredSize(lblPass.getPreferredSize());
 		lblPass.setPreferredSize(lblPass.getPreferredSize());
 		
-		b4.add(Box.createHorizontalStrut(70));
+		b4.add(Box.createHorizontalStrut(100));
 		b4.add(btnDangNhap = new JButton("Đăng Nhập"));btnDangNhap.setForeground(Color.BLUE);
 		b4.add(btnThoat = new JButton("Thoát"));btnThoat.setForeground(Color.BLUE);
 
@@ -103,7 +105,7 @@ public class FormDangNhap extends JFrame implements ActionListener{
                             JOptionPane.showMessageDialog(FormDangNhap.this, "Mật khẩu không tồn tại!", "Lỗi đăng nhập!", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(FormDangNhap.this, "Id hoặc Pass trống!", "Lỗi đăng nhập!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(FormDangNhap.this, "Id hoặc Pass sai!", "Lỗi đăng nhập!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             } catch (SQLException ex) {
@@ -112,7 +114,7 @@ public class FormDangNhap extends JFrame implements ActionListener{
 
         }else if(o.equals(btnThoat))
 		{
-			System.out.println("Kết thúc");	
+			System.out.println("Thoát");
 			System.exit(0);
 		}
 }

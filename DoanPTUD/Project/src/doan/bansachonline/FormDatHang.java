@@ -111,11 +111,13 @@ public class FormDatHang extends JFrame implements ActionListener{
 		if(o.equals(btnMua)){
 				int row = table.getSelectedRow();
 					if(row >= 0){
+					DatHang dh = new DatHang(table.getValueAt(row, 0).toString(),table.getValueAt(row, 1).toString(),table.getValueAt(row, 2).toString());
+					if(dh.create()){
+						JOptionPane.showMessageDialog(FormDatHang.this, "Mua sách thành công !");
+					}else{
 					
-						
-					
-					
-					JOptionPane.showMessageDialog(FormDatHang.this, "Đặt hàng thành công !", "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(FormDatHang.this, "Mua sách không thành công !");
+					}
 			}
 		}if(o.equals(btnThoat)){
 			int n = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát khỏi hệ thống !", "Thông Báo ",

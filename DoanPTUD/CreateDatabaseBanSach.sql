@@ -32,3 +32,7 @@ Create Table KhachHang
 )
 select *from KhachHang
 
+
+
+
+

@@ -14,16 +14,15 @@ public class DatHang {
 	
 	private DanhMucSach danhmucsach;
 	
-	public DatHang(String cMaS, String cTenS, String cGiaS, DanhMucSach danhmucsach) {
+	public DatHang(String cMaS, String cTenS, String cGiaS) {
 		this.CMaS = cMaS;
 		this.CTenS = cTenS;
 		this.CGiaS = cGiaS;
-		this.danhmucsach=danhmucsach;
 	}
 	
 
 	public DatHang(String cMaS) {
-		this(cMaS ,"Tên Sách", "Giá Sách", new DanhMucSach());
+		this(cMaS ,"Tên Sách", "Giá Sách");
 	}
 	
 	public DatHang() {
@@ -104,11 +103,10 @@ public class DatHang {
 		PreparedStatement stmt = null;
 		int n=0;
 		try {
-		stmt = con.prepareStatement("insert into KhachHang values(?,?,?.?)");
+		stmt = con.prepareStatement("insert into KhachHang values(?,?,?)");
 		stmt.setString(1, CMaS);
 		stmt.setString(2, CTenS);
 		stmt.setString(3, CGiaS);
-		stmt.setString(4, danhmucsach.getMaS());
 		n = stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
